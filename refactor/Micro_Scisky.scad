@@ -9,25 +9,27 @@ module slim_board() {
 
 	length = 33.8;
 
+	center_translation = [-half(length),-half(BOARD_WIDTH),-half(SLIM_BOARD_HEIGHT)];
+
     color("green")
-		translate([-half(length),-half(BOARD_WIDTH),-half(SLIM_BOARD_HEIGHT)])
+		translate(center_translation)
 			cube([length,BOARD_WIDTH,SLIM_BOARD_HEIGHT]);
 
 }
 
 module fat_board() {
 
-	x_size = 30.5;
-	z_size = 2;
+	length = 30.5;
+	height = 2;
 	front_ledge = 1;
 
-	translate_x = front_ledge-half(x_size);
+	translate_x = front_ledge-half(length);
 	translate_y = -half(BOARD_WIDTH);
-	translate_z = -half(SLIM_BOARD_HEIGHT)-z_size;
+	translate_z = -half(SLIM_BOARD_HEIGHT)-height;
 
     color("green")
 		translate([translate_x,translate_y,translate_z])
-			cube([x_size,BOARD_WIDTH,z_size]);
+			cube([length,BOARD_WIDTH,height]);
 
 }
 
