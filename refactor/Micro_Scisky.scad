@@ -86,11 +86,21 @@ module rear_connectors() {
 module holders() {
 
 	lateral_ledge = 0.4;
+	translation_x_front_holders_pair = -11;
+	translation_x_center_holders_pair = 0.5;
 
-	center_holders_pair(lateral_ledge);	
-	front_holders_pair(lateral_ledge);
+	holders_pair(translation_x_front_holders_pair,lateral_ledge);	
+	holders_pair(translation_x_center_holders_pair,lateral_ledge);
 
 }
+
+module holders_pair(translation_x,lateral_ledge) {
+
+	positioned_holder([translation_x, half(BOARD_WIDTH)-lateral_ledge,0]);
+	positioned_holder([translation_x,-half(BOARD_WIDTH)+lateral_ledge,0]);
+
+}
+
 
 
 module center_holders_pair(lateral_ledge) {
