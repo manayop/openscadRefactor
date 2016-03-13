@@ -2,18 +2,17 @@ METALLIC = "silver";
 
 BOARD_WIDTH = 19.8;
 SLIM_BOARD_HEIGHT = 0.8;
+SLIM_BOARD_LENGTH = 33.8;
 
 function half(x) = x / 2;
 
 module slim_board() {
 
-	length = 33.8;
-
-	center_translation = [-half(length),-half(BOARD_WIDTH),-half(SLIM_BOARD_HEIGHT)];
+	center_translation = [-half(SLIM_BOARD_LENGTH),-half(BOARD_WIDTH),-half(SLIM_BOARD_HEIGHT)];
 
     color("green")
 		translate(center_translation)
-			cube([length,BOARD_WIDTH,SLIM_BOARD_HEIGHT]);
+			cube([SLIM_BOARD_LENGTH,BOARD_WIDTH,SLIM_BOARD_HEIGHT]);
 
 }
 
@@ -43,7 +42,19 @@ module board() {
 
 module front_connector() {
 
-    color(METALLIC) translate([-29.48/2,0,1.8]) cube([ 6.7, 7.9,2.8], center=true);
+	length = 6.7;
+	width = 7.9;
+	height = 2.8;
+
+	ledge = 2.16;
+
+	translate_x = -half(SLIM_BOARD_LENGTH)-ledge;
+	translate_y = -half(width);
+	translate_z = half(SLIM_BOARD_HEIGHT);
+
+    color(METALLIC)
+		translate([translate_x,translate_y,translate_z])
+			cube([length,width,height]);
 
 }
 
