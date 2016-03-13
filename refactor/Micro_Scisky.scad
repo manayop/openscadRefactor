@@ -91,13 +91,25 @@ module rear_connectors() {
 
 module holders() {
 
+	center_holders_pair();	
+	front_holders_pair();
+
+}
+
+
+module center_holders_pair() {
+
 	positioned_holder([0.5, 9.5,0]);
 	positioned_holder([0.5,-9.5,0]);
+
+}
+
+module front_holders_pair() {
+
 	positioned_holder([-11,9.5,0]);
 	positioned_holder([-11,-9.5,0]);
 
 }
-
 
 module positioned_holder(traslation) {
 	
