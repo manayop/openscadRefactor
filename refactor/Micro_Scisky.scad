@@ -58,12 +58,30 @@ module front_connector() {
 
 }
 
+module rear_connectors() {
+	
+	length = 6.1;
+	width = 4.4;
+	height = 4.1;
+
+	connector_dimmensions = [length,width,height];
+
+
+    color("white")
+		translate([  29.48/2-3-4.4,3,0.4])
+			cube(connector_dimmensions, center=false);
+    
+	color("white")
+		translate([  29.48/2-3-4.4,-7.4,0.4])
+			cube(connector_dimmensions, center=false);
+
+}
+
 
 module scisky() {
 	board();
 	front_connector();
-    color("white")  translate([  29.48/2-3-4.4,3,0.4]) cube([ 6.1, 4.4,4.1], center=false);
-    color("white")  translate([  29.48/2-3-4.4,-7.4,0.4]) cube([ 6.1, 4.4,4.1], center=false);
+	rear_connectors();
     color("red")    translate([  0.5, 9.5,0]) cube([ 3, 3, 2], center=true);
     color("red")    translate([  0.5,-9.5,0]) cube([ 3, 3, 2], center=true);
     color("red")    translate([ -11,   9.5,0]) cube([ 3, 3, 2], center=true);
