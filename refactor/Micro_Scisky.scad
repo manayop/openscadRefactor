@@ -91,10 +91,20 @@ module rear_connectors() {
 
 module holders() {
 
-    color("red")    translate([  0.5, 9.5,0]) cube([ 3, 3, 2], center=true);
-    color("red")    translate([  0.5,-9.5,0]) cube([ 3, 3, 2], center=true);
-    color("red")    translate([ -11,   9.5,0]) cube([ 3, 3, 2], center=true);
-    color("red")    translate([ -11,  -9.5,0]) cube([ 3, 3, 2], center=true);
+	positioned_holder([0.5, 9.5,0]);
+	positioned_holder([0.5,-9.5,0]);
+	positioned_holder([-11,9.5,0]);
+	positioned_holder([-11,-9.5,0]);
+
+}
+
+
+module positioned_holder(traslation) {
+
+	dimensions = [3,3,2];
+    color("red")
+		translate(traslation)
+			cube(dimensions, center=true);
 
 }
 
