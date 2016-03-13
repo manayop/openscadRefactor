@@ -58,12 +58,6 @@ module front_connector() {
 
 }
 
-module old_rear_connectors() {
-
-    color("white")  translate([  29.48/2-3-4.4,3,0.4]) cube([ 6.1, 4.4,4.1], center=false);
-    color("white")  translate([  29.48/2-3-4.4,-7.4,0.4]) cube([ 6.1, 4.4,4.1], center=false);
-
-}
 
 module rear_connectors() {
 	
@@ -91,6 +85,7 @@ module rear_connectors() {
 
 module holders() {
 
+
 	center_holders_pair();	
 	front_holders_pair();
 
@@ -99,8 +94,11 @@ module holders() {
 
 module center_holders_pair() {
 
-	positioned_holder([0.5, 9.5,0]);
-	positioned_holder([0.5,-9.5,0]);
+	translation_x = 0.5;
+	
+
+	positioned_holder([translation_x, 9.5,0]);
+	positioned_holder([translation_x,-9.5,0]);
 
 }
 
