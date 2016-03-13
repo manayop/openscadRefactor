@@ -41,9 +41,16 @@ module board() {
 }
 
 
+module front_connector() {
+
+    color(METALLIC) translate([-29.48/2,0,1.8]) cube([ 6.7, 7.9,2.8], center=true);
+
+}
+
+
 module scisky() {
 	board();
-    color(METALLIC) translate([-29.48/2,0,1.8]) cube([ 6.7, 7.9,2.8], center=true);
+	front_connector();
     color("white")  translate([  29.48/2-3-4.4,3,0.4]) cube([ 6.1, 4.4,4.1], center=false);
     color("white")  translate([  29.48/2-3-4.4,-7.4,0.4]) cube([ 6.1, 4.4,4.1], center=false);
     color("red")    translate([  0.5, 9.5,0]) cube([ 3, 3, 2], center=true);
