@@ -1,120 +1,13 @@
-use <constants.scad>;
-
-
-
-function half(x) = x / 2;
-
-module slim_board() {
-
-	center_translation = [-half(SLIM_BOARD_LENGTH),-half(WIDTH),-half(SLIM_BOARD_HEIGHT)];
-
-    color("green")
-		translate(center_translation)
-			cube([SLIM_BOARD_LENGTH,WIDTH,SLIM_BOARD_HEIGHT]);
-
-}
-
-module fat_board() {
-
-	front_offset = 1;
-
-	x_offset = front_offset-half(FAT_BOARD_LENGTH);
-	y_offset = -half(WIDTH);
-	z_offset = -half(SLIM_BOARD_HEIGHT)-FAT_BOARD_HEIGHT;
-
-    color("green")
-		translate([x_offset,y_offset,z_offset])
-			cube([FAT_BOARD_LENGTH,WIDTH,FAT_BOARD_HEIGHT]);
-
-}
-
-module board() {
-
-	slim_board();
-	fat_board();
-
-}
-
-
-module front_connector() {
-
-	ledge = 1.19;
-
-	x_offset = -half(SLIM_BOARD_LENGTH)-ledge;
-	y_offset = -half(FRONT_CONNECTOR_WIDTH);
-	z_offset = half(SLIM_BOARD_HEIGHT);
-
-    color(METALLIC)
-		translate([x_offset,y_offset,z_offset])
-			cube([FRONT_CONNECTOR_LENGTH,FRONT_CONNECTOR_WIDTH,FRONT_CONNECTOR_HEIGHT]);
-
-}
-
-
-module rear_connectors() {
-	
-
-	connector_dimmensions = [REAR_CONNECTOR_LENGTH,REAR_CONNECTOR_WIDTH,REAR_CONNECTOR_HEIGHT];
-	rear_separation = -3.45;
-	lateral_separation = 2.5;
-
-	x_offset = half(SLIM_BOARD_LENGTH)-REAR_CONNECTOR_LENGTH+rear_separation;
-	y_offset = half(WIDTH)-REAR_CONNECTOR_WIDTH-lateral_separation;
-	second_y_offset = -half(WIDTH)+lateral_separation;
-
-	z_offset = half(SLIM_BOARD_HEIGHT);
-
-    color("white")
-		translate([x_offset,y_offset,z_offset])
-			cube(connector_dimmensions);
-
-    
-	color("white")
-		translate([x_offset,second_y_offset,z_offset])
-			cube(connector_dimmensions);
-
-}
-
-
-module holders() {
-
-	lateral_ledge = 0.4;
-	offset_x_front_holders_pair = -11;
-	offset_x_center_holders_pair = 0.5;
-
-	holders_pair(offset_x_front_holders_pair,lateral_ledge);	
-	holders_pair(offset_x_center_holders_pair,lateral_ledge);
-
-}
-
-module holders_pair(offset_x,lateral_ledge) {
-
-	positioned_holder([offset_x, half(WIDTH)-lateral_ledge,0]);
-	positioned_holder([offset_x,-half(WIDTH)+lateral_ledge,0]);
-
-}
-
-
-module positioned_holder(traslation) {
-	
-	dimensions = [HOLDER_LENGTH,HOLDER_WIDTH,HOLDER_HEIGHT];
-
-	center_translation = [-half(HOLDER_LENGTH),-half(HOLDER_WIDTH),-half(HOLDER_HEIGHT)];
-    color("red")
-		translate(traslation)
-			translate(center_translation)
-				cube(dimensions);
-
-}
-
-
 module scisky() {
-
-	board();
-	front_connector();
-	rear_connectors();
-	holders();
-
-}
+    color("green")  translate([     0,0,  0])   cube([33.8,19.8,0.8], center=true);
+    color("silver") translate([-29.48/2,0,1.8]) cube([ 6.7, 7.9,2.8], center=true);
+    color("green")  translate([    1,0,-1.4])    cube([30.5,19.8,2], center=true);
+    color("white")  translate([  29.48/2-3-4.4,3,0.4]) cube([ 6.1, 4.4,4.1], center=false);
+    color("white")  translate([  29.48/2-3-4.4,-7.4,0.4]) cube([ 6.1, 4.4,4.1], center=false);
+    color("red")    translate([  0.5, 9.5,0]) cube([ 3, 3, 2], center=true);
+    color("red")    translate([  0.5,-9.5,0]) cube([ 3, 3, 2], center=true);
+    color("red")    translate([ -11,   9.5,0]) cube([ 3, 3, 2], center=true);
+    color("red")    translate([ -11,  -9.5,0]) cube([ 3, 3, 2], center=true);
+    }
     
 scisky();
