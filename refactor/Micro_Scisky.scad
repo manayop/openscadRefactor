@@ -58,6 +58,13 @@ module front_connector() {
 
 }
 
+module old_rear_connectors() {
+
+    color("white")  translate([  29.48/2-3-4.4,3,0.4]) cube([ 6.1, 4.4,4.1], center=false);
+    color("white")  translate([  29.48/2-3-4.4,-7.4,0.4]) cube([ 6.1, 4.4,4.1], center=false);
+
+}
+
 module rear_connectors() {
 	
 	length = 6.1;
@@ -65,15 +72,19 @@ module rear_connectors() {
 	height = 4.1;
 
 	connector_dimmensions = [length,width,height];
+	rear_separation = -3.45;
+	center_separation = 3;
 
+	translate_x = half(SLIM_BOARD_LENGTH)-length+rear_separation;
+	translate_z = half(SLIM_BOARD_HEIGHT);
 
     color("white")
-		translate([  29.48/2-3-4.4,3,0.4])
-			cube(connector_dimmensions, center=false);
+		translate([translate_x,center_separation,translate_z])
+			cube(connector_dimmensions);
     
 	color("white")
-		translate([  29.48/2-3-4.4,-7.4,0.4])
-			cube(connector_dimmensions, center=false);
+		translate([translate_x,-center_separation-width,translate_z])
+			cube(connector_dimmensions);
 
 }
 
