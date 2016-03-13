@@ -100,11 +100,18 @@ module holders() {
 
 
 module positioned_holder(traslation) {
+	
+	length = 3;
+	width = 3;
+	height = 2;
 
-	dimensions = [3,3,2];
+	dimensions = [length,width,height];
+
+	center_translation = [-half(length),-half(width),-half(height)];
     color("red")
 		translate(traslation)
-			cube(dimensions, center=true);
+			translate(center_translation)
+				cube(dimensions);
 
 }
 
