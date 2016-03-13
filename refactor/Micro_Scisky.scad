@@ -20,14 +20,14 @@ module fat_board() {
 
 	length = 30.5;
 	height = 2;
-	front_ledge = 1;
+	front_offset = 1;
 
-	translate_x = front_ledge-half(length);
-	translate_y = -half(BOARD_WIDTH);
-	translate_z = -half(SLIM_BOARD_HEIGHT)-height;
+	x_offset = front_offset-half(length);
+	y_offset = -half(BOARD_WIDTH);
+	z_offset = -half(SLIM_BOARD_HEIGHT)-height;
 
     color("green")
-		translate([translate_x,translate_y,translate_z])
+		translate([x_offset,y_offset,z_offset])
 			cube([length,BOARD_WIDTH,height]);
 
 }
@@ -46,14 +46,14 @@ module front_connector() {
 	width = 7.9;
 	height = 2.8;
 
-	ledge = 2.16;
+	ledge = 1.19;
 
-	translate_x = -half(SLIM_BOARD_LENGTH)-ledge;
-	translate_y = -half(width);
-	translate_z = half(SLIM_BOARD_HEIGHT);
+	x_offset = -half(SLIM_BOARD_LENGTH)-ledge;
+	y_offset = -half(width);
+	z_offset = half(SLIM_BOARD_HEIGHT);
 
     color(METALLIC)
-		translate([translate_x,translate_y,translate_z])
+		translate([x_offset,y_offset,z_offset])
 			cube([length,width,height]);
 
 }
@@ -69,15 +69,15 @@ module rear_connectors() {
 	rear_separation = -3.45;
 	center_separation = 3;
 
-	translate_x = half(SLIM_BOARD_LENGTH)-length+rear_separation;
-	translate_z = half(SLIM_BOARD_HEIGHT);
+	x_offset = half(SLIM_BOARD_LENGTH)-length+rear_separation;
+	z_offset = half(SLIM_BOARD_HEIGHT);
 
     color("white")
-		translate([translate_x,center_separation,translate_z])
+		translate([x_offset,center_separation,z_offset])
 			cube(connector_dimmensions);
     
 	color("white")
-		translate([translate_x,-center_separation-width,translate_z])
+		translate([x_offset,-center_separation-width,z_offset])
 			cube(connector_dimmensions);
 
 }
@@ -86,41 +86,21 @@ module rear_connectors() {
 module holders() {
 
 	lateral_ledge = 0.4;
-	translation_x_front_holders_pair = -11;
-	translation_x_center_holders_pair = 0.5;
+	offset_x_front_holders_pair = -11;
+	offset_x_center_holders_pair = 0.5;
 
-	holders_pair(translation_x_front_holders_pair,lateral_ledge);	
-	holders_pair(translation_x_center_holders_pair,lateral_ledge);
-
-}
-
-module holders_pair(translation_x,lateral_ledge) {
-
-	positioned_holder([translation_x, half(BOARD_WIDTH)-lateral_ledge,0]);
-	positioned_holder([translation_x,-half(BOARD_WIDTH)+lateral_ledge,0]);
+	holders_pair(offset_x_front_holders_pair,lateral_ledge);	
+	holders_pair(offset_x_center_holders_pair,lateral_ledge);
 
 }
 
+module holders_pair(offset_x,lateral_ledge) {
 
-
-module center_holders_pair(lateral_ledge) {
-
-	translation_x = 0.5;
-	
-
-	positioned_holder([translation_x, half(BOARD_WIDTH)-lateral_ledge,0]);
-	positioned_holder([translation_x,-half(BOARD_WIDTH)+lateral_ledge,0]);
+	positioned_holder([offset_x, half(BOARD_WIDTH)-lateral_ledge,0]);
+	positioned_holder([offset_x,-half(BOARD_WIDTH)+lateral_ledge,0]);
 
 }
 
-module front_holders_pair(lateral_ledge) {
-
-	translation_x = -11;
-
-	positioned_holder([translation_x,half(BOARD_WIDTH)-lateral_ledge,0]);
-	positioned_holder([translation_x,-half(BOARD_WIDTH)+lateral_ledge,0]);
-
-}
 
 module positioned_holder(traslation) {
 	
