@@ -89,14 +89,23 @@ module rear_connectors() {
 }
 
 
-module scisky() {
-	board();
-	front_connector();
-	rear_connectors();
+module holders() {
+
     color("red")    translate([  0.5, 9.5,0]) cube([ 3, 3, 2], center=true);
     color("red")    translate([  0.5,-9.5,0]) cube([ 3, 3, 2], center=true);
     color("red")    translate([ -11,   9.5,0]) cube([ 3, 3, 2], center=true);
     color("red")    translate([ -11,  -9.5,0]) cube([ 3, 3, 2], center=true);
-    }
+
+}
+
+
+module scisky() {
+
+	board();
+	front_connector();
+	rear_connectors();
+	holders();
+
+}
     
 scisky();
